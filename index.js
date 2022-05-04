@@ -3,7 +3,7 @@ const app = express();
 
 app.get('/', (req, res) => res.send('Hello Geekhunter!'));
 
-const server = app.listen(process.env.PORT || 5000, () => {
+const server = app.listen(process.env.PORT || 5500, () => {
   const port = server.address().port;
   console.log(`Express is working on port ${port}`);
 });
