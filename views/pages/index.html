@@ -1,0 +1,77 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Casa das Alianças</title>
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: rgb(236, 23, 21);
+    }
+    .container img {
+      width: 156px;
+      height: 49px;
+    }
+    .container button {
+      display: block;
+      border: 3px solid  rgb(236, 23, 21);;
+      border-radius: 10px;
+      color: rgb(236, 23, 21);
+      margin: 20px auto;
+      padding: 14px;
+      background: #fff;
+      cursor: pointer;
+    }
+    #get {
+      display: none;
+    }
+    .-loading {
+      position: relative;
+      color: transparent !important;
+    }
+
+    .-loading:before {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 7px;
+      left: 50px;
+      border: 5px solid #f3f3f3; /* Light grey */
+      border-top: 5px solid rgb(236, 23, 21);
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      animation: spin .5s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img width="0" height="0" id="ihttps://golden.vteximg.com.br/arquivos/ids/155462/logo-ca-topo.png?v=637311538114970000"
+      alt="logo" src="https://golden.vteximg.com.br/arquivos/ids/155462/logo-ca-topo.png?v=637311538114970000"
+      complete="complete">
+    <button id="update">Atualizar Ofertas</button>
+    <button id="get">Get API</button>
+  </div>
+
+  <script>
+    let update = document.querySelector('#update');
+    update.addEventListener('click', function() {
+      this.classList.add('-loading');
+      fetch('/update-sales').then(res => res.json()).then(data => console.log(data));
+    })
+    let get = document.querySelector('#get');
+    get.addEventListener('click', function() {
+      fetch('/get-sales').then(res => res.json()).then(data => console.log(data));
+    })
+  </script>
+</body>
+</html>
