@@ -22,9 +22,25 @@ let sales = {
 app.get("/", function (req, res) {
   res.render("pages/index")
 });
+
 app.get("/get-sales", function (req, res) {
   res.setTimeout(2000000);
   res.send(sales.data);
+});
+
+app.get('/cron', function(req, res) {
+  const currentDate = new Date().getTime();
+  let cronInterval = 1 // minutes
+  cronInterval = cronInterval * 60 * 1000;
+  const cronDate = sales.date + cronInterval;
+  if (currentDate > cronDate) {
+    console.table('maior')
+    sales.date = currentDate;
+  } else {
+    console.log('menor');
+  }
+  console.log(currentDate)
+  console.log(sales.date)
 });
 
 app.get("/update-sales", function (req, res) {
@@ -43,6 +59,7 @@ app.get("/update-sales", function (req, res) {
     if (rangeTotal <= currentPaginationInitial) {
       console.log('send data')
       sales.data = newData;
+      sales.date = new Date().getTime();
       res.send(newData);
     } else {
       console.log('rangeTotal', rangeTotal)
