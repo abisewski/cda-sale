@@ -36,7 +36,11 @@ app.get('/cron', function(req, res) {
   if (currentDate > cronDate) {
     sales.date = currentDate;
     axios.get('https://blog.casadasaliancas.com.br/cda-update-sales.php').then(a => a).catch(err => err);
+    res.send('updating...');
+  } else {
+    res.send('done');
   }
+
 });
 
 app.get("/update-sales", function (req, res) {
