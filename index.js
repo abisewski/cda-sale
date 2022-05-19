@@ -33,18 +33,19 @@ app.get('/cron', function(req, res) {
   let cronInterval = 30 // minutes
   cronInterval = cronInterval * 60 * 1000;
   const cronDate = sales.date + cronInterval;
+  const oldDate = sales.date;
   if (currentDate > cronDate) {
     sales.date = currentDate;
     axios.get('https://blog.casadasaliancas.com.br/cda-update-sales.php').then(a => a).catch(err => err);
     res.send({
       message: 'Updating...',
-      salesDate: new Date(sales.date),
+      salesDate: new Date(oldDate),
       currentDate: new Date(currentDate),
     });
   } else {
     res.send({
       message: 'Done',
-      salesDate: new Date(sales.date),
+      salesDate: new Date(oldDate),
       currentDate: new Date(currentDate),
     });
   }
