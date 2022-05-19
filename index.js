@@ -30,7 +30,7 @@ app.get("/get-sales", function (req, res) {
 
 app.get('/cron', function(req, res) {
   const currentDate = new Date().getTime();
-  let cronInterval = 1 // minutes
+  let cronInterval = 30 // minutes
   cronInterval = cronInterval * 60 * 1000;
   const cronDate = sales.date + cronInterval;
   if (currentDate > cronDate) {
