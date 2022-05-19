@@ -35,10 +35,18 @@ app.get('/cron', function(req, res) {
   const cronDate = sales.date + cronInterval;
   if (currentDate > cronDate) {
     sales.date = currentDate;
-    axios.get('https://blog.casadasaliancas.com.br/cda-update-sales.php').then(a => a).catch(err => err);
-    res.send('updating...');
+    // axios.get('https://blog.casadasaliancas.com.br/cda-update-sales.php').then(a => a).catch(err => err);
+    res.send({
+      message: 'Updating...',
+      salesDate: new Date(sales.date),
+      currentDate: new Date(currentDate),
+    });
   } else {
-    res.send('done');
+    res.send({
+      message: 'Done',
+      salesDate: new Date(sales.date),
+      currentDate: new Date(currentDate),
+    });
   }
 
 });
