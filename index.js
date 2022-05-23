@@ -64,7 +64,7 @@ let date = new Date();
 let sales = {
   date: '',
   dateFormated: '',
-  data: dateTest
+  data: []
 };
 
 app.get("/", function (req, res) {
