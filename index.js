@@ -64,7 +64,7 @@ let date = new Date();
 let sales = {
   date: '',
   dateFormated: '',
-  data: []
+  data: dateTest
 };
 
 app.get("/", function (req, res) {
@@ -73,15 +73,11 @@ app.get("/", function (req, res) {
 
 app.get("/get-sales", function (req, res) {
   res.setTimeout(2000000);
-  console.log(req.query);
   let searchedData = [];
-  if (req.query) {
+  if (Object.keys(req.query).length >= 1) {
     sales.data.forEach(function(salesItem) {
       let added = false;
       Object.keys(req.query).forEach(function(item) {
-        console.log(item)
-        console.log(req.query[item])
-        console.log(salesItem[0][item]);
         if (!salesItem[0][item]) return;
 
         let matched = salesItem[0][item][0] === req.query[item] || salesItem[0][item] === req.query[item];
