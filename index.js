@@ -11,6 +11,54 @@ function getKeyByValue(object, value) {
     object[key].includes(value));
 }
 
+let dateTest = [
+  [{
+    "id": 1,
+    "COR DO FUNDO - VISOR": [
+        "Preto"
+      ],
+      "PROFUNDIDADE DE RESISTENCIA À ÁGUA": [
+  "10 ATM"
+],
+  "COR DA PULSEIRA": [
+    "Azul"
+  ],
+    "GARANTIA DO FABRICANTE": [
+      "12 Meses"
+    ],
+    }],
+[{
+  "id": 2,
+  "COR DO FUNDO - VISOR": [
+    "Preto"
+  ],
+  "PROFUNDIDADE DE RESISTENCIA À ÁGUA": [
+    "20 ATM"
+  ],
+  "COR DA PULSEIRA": [
+    "Preto"
+  ],
+  "GARANTIA DO FABRICANTE": "14 Meses",
+}],
+  [{
+    "id": 3,
+    "COR DO FUNDO - VISOR": [
+      "Azul"
+    ],
+    "PROFUNDIDADE DE RESISTENCIA À ÁGUA": [
+      "20 ATM"
+    ],
+    "COR DA PULSEIRA": [
+      "Branca"
+    ],
+    "GARANTIA DO FABRICANTE": [
+      "14 Meses"
+    ],
+    "MATERIAL": [
+      "Aço Cirúrgico - 304L"
+    ]
+  }],
+];
 
 let date = new Date();
 let sales = {
@@ -25,7 +73,29 @@ app.get("/", function (req, res) {
 
 app.get("/get-sales", function (req, res) {
   res.setTimeout(2000000);
-  res.send(sales.data);
+  console.log(req.query);
+  let searchedData = [];
+  if (req.query) {
+    sales.data.forEach(function(salesItem) {
+      let added = false;
+      Object.keys(req.query).forEach(function(item) {
+        console.log(item)
+        console.log(req.query[item])
+        console.log(salesItem[0][item]);
+        if (!salesItem[0][item]) return;
+
+        let matched = salesItem[0][item][0] === req.query[item] || salesItem[0][item] === req.query[item];
+
+        if (matched && !added) {
+          searchedData.push(salesItem);
+          added = true;
+        }
+      })
+    })
+    res.send(searchedData);
+  } else {
+    res.send(sales.data);
+  }
 });
 
 app.get('/cron', function(req, res) {
