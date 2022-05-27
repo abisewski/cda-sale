@@ -176,7 +176,7 @@ app.get("/update-sales", function (req, res) {
 
                 if (lastIndex) {
                   // getProducts(currentPagination + perPage, salesResponse.data.range.total, newData);
-                  getProducts(currentPagination + perPage, 8000, newData);
+                  getProducts(currentPagination + perPage, 7000, newData);
                 }
               })
 
