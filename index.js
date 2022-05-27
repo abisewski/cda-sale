@@ -180,12 +180,14 @@ app.get("/update-sales", function (req, res) {
                     "items": [pRes.data[0].items[0]],
                     "productNameproductName": pRes.data[0].productName,
                     "brand": pRes.data[0].brand,
+                    "Filtros": pRes.data[0].Filtros
                   }]);
+                  // console.log(newData);
                 } 
  
-                if (lastIndex) {
-                  getProducts(currentPagination + perPage, salesResponse.data.range.total, newData);
-                }
+                // if (lastIndex) {
+                //   getProducts(currentPagination + perPage, salesResponse.data.range.total, newData);
+                // }
               })
 
           })
