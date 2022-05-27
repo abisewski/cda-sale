@@ -131,12 +131,13 @@ app.get("/update-sales", function (req, res) {
     const perPage = 20;
     const currentPaginationInitial = currentPagination - perPage + 1;
 
-    if (rangeTotal <= currentPaginationInitial) {
+    if (rangeTotal <= currentPaginationInitial || newData.length >= 300) {
       console.log('send data')
       sales.data = newData;
       sales.date = new Date().getTime();
       res.send(newData);
     } else {
+      console.log('newData length', newData.length)
       console.log('rangeTotal', rangeTotal)
       console.log('currentPagination', currentPagination)
 
