@@ -185,9 +185,9 @@ app.get("/update-sales", function (req, res) {
                   // console.log(newData);
                 } 
  
-                // if (lastIndex) {
-                //   getProducts(currentPagination + perPage, salesResponse.data.range.total, newData);
-                // }
+                if (lastIndex) {
+                  getProducts(currentPagination + perPage, salesResponse.data.range.total, newData);
+                }
               })
 
           })
