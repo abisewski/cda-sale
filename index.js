@@ -123,7 +123,7 @@ app.get("/update-sales", function (req, res) {
 
   console.log('loading');
 
-  getProducts(0)
+  getProducts(300)
 
   function getProducts(currentPagination, rangeTotal = 20000, currentData) {
     let newData = currentData || [];
@@ -172,12 +172,19 @@ app.get("/update-sales", function (req, res) {
 
                 if(isSale) {
                   console.log('isSale', productId)
-                  newData.push(pRes.data);
-                }
+                  // newData.push(pRes.data);
 
+                  newData.push([{
+                    "productId": pRes.data[0].productId,
+                    "link": pRes.data[0].link,
+                    "items": [pRes.data[0].items[0]],
+                    "productNameproductName": pRes.data[0].productName,
+                    "brand": pRes.data[0].brand,
+                  }]);
+                } 
+ 
                 if (lastIndex) {
-                  // getProducts(currentPagination + perPage, salesResponse.data.range.total, newData);
-                  getProducts(currentPagination + perPage, 7000, newData);
+                  getProducts(currentPagination + perPage, salesResponse.data.range.total, newData);
                 }
               })
 
