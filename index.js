@@ -215,7 +215,6 @@ app.get("/update-category", function (req, res) {
     const catId = 446;
     const currentPaginationInitial = currentPagination - perPage + 1;
 
-    console.log('newData length', newData.length)
     console.log('rangeTotal', rangeTotal)
     console.log('currentPagination', currentPagination)
 
