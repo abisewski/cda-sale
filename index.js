@@ -212,7 +212,7 @@ app.get("/update-category", function (req, res) {
   function getProducts(currentPagination, rangeTotal = 20000) {
 
     const perPage = 20;
-    const catId = 446;
+    var catId = 446;
     const currentPaginationInitial = currentPagination - perPage + 1;
 
     console.log('rangeTotal', rangeTotal)
@@ -238,6 +238,9 @@ app.get("/update-category", function (req, res) {
               if (lastIndex) {
                 getProducts(currentPagination + perPage);
               }
+            })
+            .catch(function (err) {
+              console.log('post error')
             })
 
         })
