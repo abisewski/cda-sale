@@ -202,6 +202,55 @@ app.get("/update-sales", function (req, res) {
   }
 });
 
+app.get("/update-category", function (req, res) {
+  res.setTimeout(2000000);
+
+  console.log('loading');
+
+  getProducts(0)
+
+  function getProducts(currentPagination, rangeTotal = 20000) {
+
+    const perPage = 20;
+    const catId = 446;
+    const currentPaginationInitial = currentPagination - perPage + 1;
+
+    console.log('newData length', newData.length)
+    console.log('rangeTotal', rangeTotal)
+    console.log('currentPagination', currentPagination)
+
+    var headersAuth = {
+      "x-vtex-api-appKey": "vtexappkey-golden-CEWDHC",
+      "x-vtex-api-appToken": "FHGYSNMOHIVBFWZETIEHKCKAVTIXAREZQGQBADRXXQSXGLDZQFYVLOZCXFDZFPOPEVLZGXEQQHJUJMTJPIGVTJOCGNEUZSSICDTLAETTAIEEEFTKMTJWISVUGJSSTJQY"
+    };
+
+    axios.get(`https://www.casadasaliancas.com.br/api/catalog_system/pvt/products/GetProductAndSkuIds?_from=${currentPaginationInitial}&_to=${currentPagination}`, { headers: headersAuth })
+      .then(function (salesResponse) {
+
+        let salesResponseData = salesResponse.data.data;
+        
+        Object.keys(salesResponseData).forEach((productId, index) => {
+          let isSale = false;
+          let lastIndex = Object.keys(salesResponseData).length === (index + 1);
+          axios.post(`https://www.casadasaliancas.com.br/api/catalog/pvt/product/${productId}/similarcategory/${catId}`, { headers: headersAuth })
+            .then(function (pRes) {
+              
+
+              if (lastIndex) {
+                getProducts(currentPagination + perPage);
+              }
+            })
+
+        })
+      })
+      .catch(error => {
+
+        console.log(error)
+        getProducts(currentPagination + perPage, salesResponse.data.range.total);
+      });
+  }
+});
+
 const server = app.listen(process.env.PORT || 5000, () => {
   const port = server.address().port;
   console.log(`Express is working on port ${port}`);
