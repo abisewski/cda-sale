@@ -22287,7 +22287,19 @@ app.get("/update-sales", function (req, res) {
 
                 if(isSale) {
                   console.log('isSale', productId)
-                  newData.push(pRes.data);
+                  const resDataArr = [];
+                  pRes.data.forEach(item => {
+                    const { productId, items, link, } = item
+                    const resData = {
+                      productId,
+                      items: [items[0]],
+                      link
+                    }
+                    resDataArr.push(resData)
+
+                  })
+                  newData.push(resDataArr);
+                  // newData.push(pRes.data);
                 } 
  
                 if (lastIndex) {
