@@ -22234,7 +22234,7 @@ app.get('/cron', function(req, res) {
 });
 
 app.get("/update-sales", function (req, res) {
-  res.setTimeout(2000000);
+  res.setTimeout(4000000);
 
   console.log('loading');
 
@@ -22246,7 +22246,7 @@ app.get("/update-sales", function (req, res) {
     const perPage = 20;
     const currentPaginationInitial = currentPagination - perPage + 1;
 
-    if (rangeTotal <= currentPaginationInitial || newData.length >= 50) {
+    if (rangeTotal <= currentPaginationInitial) {
       console.log('send data')
       sales.data = newData;
       sales.date = new Date().getTime();
@@ -22289,11 +22289,12 @@ app.get("/update-sales", function (req, res) {
                   console.log('isSale', productId)
                   const resDataArr = [];
                   pRes.data.forEach(item => {
-                    const { productId, items, link, } = item
+                    const { productId, items, link, Filtros } = item
                     const resData = {
                       productId,
                       items: [items[0]],
-                      link
+                      link,
+                      Filtros
                     }
                     resDataArr.push(resData)
 
@@ -22303,6 +22304,7 @@ app.get("/update-sales", function (req, res) {
                 } 
  
                 if (lastIndex) {
+                  // console.log(newData)
                   // getProducts(currentPagination + perPage, 10000, newData);
                   getProducts(currentPagination + perPage, salesResponse.data.range.total, newData);
                 }
