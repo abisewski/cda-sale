@@ -22289,9 +22289,11 @@ app.get("/update-sales", function (req, res) {
                   console.log('isSale', productId)
                   const resDataArr = [];
                   pRes.data.forEach(item => {
-                    const { productId, items, link, Filtros } = item
+                    const { productId, items, link, productName, brand, Filtros } = item
                     const resData = {
                       productId,
+                      productName,
+                      brand,
                       items: [items[0]],
                       link,
                       Filtros
