@@ -22289,7 +22289,7 @@ app.get("/update-sales", function (req, res) {
                 //   console.log('isSale', productId)
                   const resDataArr = [];
                   pRes.data.forEach(item => {
-                    // const { productId, items, link, productName, brand, Filtros } = item
+                    const { items } = item
                     // const resData = {
                     //   productId,
                     //   productName,
@@ -22300,7 +22300,7 @@ app.get("/update-sales", function (req, res) {
                     // }
                     delete item.description;
                     delete item.items;
-                    item.items = [item.items[0]];
+                    item.items = [items[0]];
                     resDataArr.push(item)
 
                   })
