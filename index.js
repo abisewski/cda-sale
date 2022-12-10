@@ -22300,7 +22300,7 @@ app.get("/update-sales", function (req, res) {
                     // }
                     delete item.description;
                     delete item.items;
-                    item.items = [items[0]];
+                    item.items = [item.items[0]];
                     resDataArr.push(item)
 
                   })
