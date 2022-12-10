@@ -22300,7 +22300,7 @@ app.get("/update-sales", function (req, res) {
                     // }
                     delete item.description;
                     delete item.items;
-                    item.items = [item[0]];
+                    item.items = [items[0]];
                     resDataArr.push(item)
 
                   })
@@ -22309,7 +22309,7 @@ app.get("/update-sales", function (req, res) {
                 } 
  
                 if (lastIndex) {
-                  console.log(newData)
+                  // console.log(newData)
                   // getProducts(currentPagination + perPage, 10000, newData);
                   getProducts(currentPagination + perPage, salesResponse.data.range.total, newData);
                 }
