@@ -22257,8 +22257,8 @@ app.get("/update-sales", function (req, res) {
       console.log('currentPagination', currentPagination)
 
       var headersAuth = {
-        "x-vtex-api-appKey": "vtexappkey-golden-CEWDHC",
-        "x-vtex-api-appToken": "FHGYSNMOHIVBFWZETIEHKCKAVTIXAREZQGQBADRXXQSXGLDZQFYVLOZCXFDZFPOPEVLZGXEQQHJUJMTJPIGVTJOCGNEUZSSICDTLAETTAIEEEFTKMTJWISVUGJSSTJQY"
+        "x-vtex-api-appKey": "vtexappkey-golden-ALXBUJ",
+        "x-vtex-api-appToken": "ZUMITPSREYSQVQNTBPMVNRGNRBCQNGZWEZSBRKTILRUHPVNHXJDKVZKJWJCNSBXVIVAVQZSHYQHXQBDPJMJOROZPFUGVMMXTBZSWPKPHFYVLKVRKNWVJHMNRLDKVFIYV",
       };
 
       // axios.get(`https://www.casadasaliancas.com.br/api/catalog_system/pub/products/search/?fq=C:%3a%2f${categoryId}%2f&_from=${currentPaginationInitial}&_to=${currentPagination}&O=OrderByReleaseDateDESC`, { headers: headersAuth })
@@ -22277,11 +22277,14 @@ app.get("/update-sales", function (req, res) {
 
                   if (pRes.data[0].items[0]) {
                     
-                    pRes.data[0].items[0].sellers[0].commertialOffer.DiscountHighLight.forEach(highlight => {
-                      if (getKeyByValue(highlight, 'Oferta') || getKeyByValue(highlight, 'OFF')) {
-                        isSale = true;
-                      }
-                    })
+                    if (pRes.data[0].items[0].sellers[0].commertialOffer.DiscountHighLight.length) {
+                      isSale = true;
+                    }
+                    // pRes.data[0].items[0].sellers[0].commertialOffer.DiscountHighLight.forEach(highlight => {
+                    //   if (getKeyByValue(highlight, 'Oferta') || getKeyByValue(highlight, 'OFF')) {
+                    //     isSale = true;
+                    //   }
+                    // })
                   }
                 }
 
@@ -22345,8 +22348,8 @@ app.get("/update-category", function (req, res) {
     var headersAuth = {
       "Accept": "application/json", 
       "Content-Type": "application/json",
-      "x-vtex-api-appKey": "vtexappkey-golden-CEWDHC",
-      "x-vtex-api-appToken": "FHGYSNMOHIVBFWZETIEHKCKAVTIXAREZQGQBADRXXQSXGLDZQFYVLOZCXFDZFPOPEVLZGXEQQHJUJMTJPIGVTJOCGNEUZSSICDTLAETTAIEEEFTKMTJWISVUGJSSTJQY"
+      "x-vtex-api-appKey": "vtexappkey-golden-ALXBUJ",
+      "x-vtex-api-appToken": "ZUMITPSREYSQVQNTBPMVNRGNRBCQNGZWEZSBRKTILRUHPVNHXJDKVZKJWJCNSBXVIVAVQZSHYQHXQBDPJMJOROZPFUGVMMXTBZSWPKPHFYVLKVRKNWVJHMNRLDKVFIYV",
     };
 
     axios.get(`https://www.casadasaliancas.com.br/api/catalog_system/pvt/products/GetProductAndSkuIds?_from=${currentPaginationInitial}&_to=${currentPagination}`, { headers: headersAuth })
@@ -22398,8 +22401,8 @@ app.get("/update-category-from-data", function (req, res) {
     var headersAuth = {
       "Accept": "application/json", 
       "Content-Type": "application/json",
-      "x-vtex-api-appKey": "vtexappkey-golden-CEWDHC",
-      "x-vtex-api-appToken": "FHGYSNMOHIVBFWZETIEHKCKAVTIXAREZQGQBADRXXQSXGLDZQFYVLOZCXFDZFPOPEVLZGXEQQHJUJMTJPIGVTJOCGNEUZSSICDTLAETTAIEEEFTKMTJWISVUGJSSTJQY"
+      "x-vtex-api-appKey": "vtexappkey-golden-ALXBUJ",
+      "x-vtex-api-appToken": "ZUMITPSREYSQVQNTBPMVNRGNRBCQNGZWEZSBRKTILRUHPVNHXJDKVZKJWJCNSBXVIVAVQZSHYQHXQBDPJMJOROZPFUGVMMXTBZSWPKPHFYVLKVRKNWVJHMNRLDKVFIYV",
     };
 
     const entregaVipProductsArrayInterval = setInterval(() => {
