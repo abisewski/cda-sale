@@ -22286,11 +22286,17 @@ app.get("/update-sales", function (req, res) {
                   //   }
                   // }
                   if (pRes.data[0].items[0]) {                    
-                    pRes.data[0].items[0].sellers[0].commertialOffer.DiscountHighLight.forEach(highlight => {
-                      if (getKeyByValue(highlight, 'Oferta') || getKeyByValue(highlight, 'OFF')) {
-                        isSale = true;
+                    if (pRes.data[0].items[0].sellers[0].commertialOffer.DiscountHighLight.length 
+                      && !pRes.data[0].items[0].sellers[0].commertialOffer.DiscountHighLight[0].includes('Frete')
+                      && !pRes.data[0].items[0].sellers[0].commertialOffer.DiscountHighLight[0].includes('Entrega')
+                      ) {
+                        isSale = true
                       }
-                    })
+                    // pRes.data[0].items[0].sellers[0].commertialOffer.DiscountHighLight.forEach(highlight => {
+                    //   if (getKeyByValue(highlight, 'Oferta') || getKeyByValue(highlight, 'OFF')) {
+                    //     isSale = true;
+                    //   }
+                    // })
                   }
                 }
 
