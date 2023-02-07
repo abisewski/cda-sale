@@ -22288,9 +22288,13 @@ app.get("/update-sales", function (req, res) {
                   if (pRes.data[0].items[0]) {                    
 
                     if (pRes.data[0].items[0].sellers[0].commertialOffer.DiscountHighLight.length === 1) {
-                      pRes.data[0].items[0].sellers[0].commertialOffer.DiscountHighLight.forEach(highlight => {
-                        if (!getKeyByValue(highlight, 'Frete') && !getKeyByValue(highlight, 'Entrega')) {
-                          isSale = true;
+                      pRes.data[0].items.forEach(item => {
+                        if (item.sellers[0].commertialOffer.AvailableQuantity) {
+                          item.sellers[0].commertialOffer.DiscountHighLight.forEach(highlight => {
+                            if (!getKeyByValue(highlight, 'Frete') && !getKeyByValue(highlight, 'Entrega')) {
+                              isSale = true;
+                            }
+                          })
                         }
                       })
                     }
