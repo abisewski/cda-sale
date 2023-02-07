@@ -22273,6 +22273,7 @@ app.get("/update-sales", function (req, res) {
 
             axios.get(`https://www.casadasaliancas.com.br/api/catalog_system/pub/products/search?fq=productId:${productId}`, { headers: headersAuth })
               .then(function (pRes) {
+                let saleItem;
                 if (pRes.data[0]) {
 
                   // for (let index = 0; index < pRes.data[0].items.length; index++) {
@@ -22293,12 +22294,14 @@ app.get("/update-sales", function (req, res) {
                           const highlight = item.sellers[0].commertialOffer.DiscountHighLight[0];
                           if (!getKeyByValue(highlight, 'Frete') && !getKeyByValue(highlight, 'Entrega')) {
                             isSale = true;
+                            saleItem = item
                           } else {
                             console.log(highlight)
                           }
                         } 
                         if (item.sellers[0].commertialOffer.DiscountHighLight.length > 1) {
                           isSale = true;
+                          saleItem = item
                         }
                       }
                     })
@@ -22330,7 +22333,7 @@ app.get("/update-sales", function (req, res) {
                     // }
                     delete item.description;
                     delete item.items;
-                    item.items = [items[0]];
+                    item.items = [saleItem];
                     resDataArr.push(item)
 
                   })
