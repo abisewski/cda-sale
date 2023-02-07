@@ -22275,22 +22275,22 @@ app.get("/update-sales", function (req, res) {
               .then(function (pRes) {
                 if (pRes.data[0]) {
 
-                  for (let index = 0; index < pRes.data[0].items.length; index++) {
-                    if (pRes.data[0].items[index].sellers[0].commertialOffer.AvailableQuantity) {
-                      const price_1 = pRes.data[0].items[index].sellers[0].commertialOffer.Price;
-                      const price_2 = pRes.data[0].items[index].sellers[0].commertialOffer.ListPrice;
+                  // for (let index = 0; index < pRes.data[0].items.length; index++) {
+                  //   if (pRes.data[0].items[index].sellers[0].commertialOffer.AvailableQuantity) {
+                  //     const price_1 = pRes.data[0].items[index].sellers[0].commertialOffer.Price;
+                  //     const price_2 = pRes.data[0].items[index].sellers[0].commertialOffer.ListPrice;
 
-                      if(price_1 !== price_2) {
+                  //     if(price_1 !== price_2) {
+                  //       isSale = true;
+                  //     }
+                  //   }
+                  // }
+                  if (pRes.data[0].items[0]) {                    
+                    pRes.data[0].items[0].sellers[0].commertialOffer.DiscountHighLight.forEach(highlight => {
+                      if (getKeyByValue(highlight, 'Oferta') || getKeyByValue(highlight, 'OFF')) {
                         isSale = true;
                       }
-                    }
-                  }
-                  if (pRes.data[0].items[0]) {                    
-                    // pRes.data[0].items[0].sellers[0].commertialOffer.DiscountHighLight.forEach(highlight => {
-                    //   if (getKeyByValue(highlight, 'Oferta') || getKeyByValue(highlight, 'OFF')) {
-                    //     isSale = true;
-                    //   }
-                    // })
+                    })
                   }
                 }
 
