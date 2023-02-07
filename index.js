@@ -22295,7 +22295,6 @@ app.get("/update-sales", function (req, res) {
                           if (!getKeyByValue(highlight, 'Frete') && !getKeyByValue(highlight, 'Entrega')) {
                             isSale = true;
                             saleItem = item
-                          } else {
                             console.log(highlight)
                           }
                         } 
