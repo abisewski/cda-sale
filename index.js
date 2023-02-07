@@ -22287,21 +22287,25 @@ app.get("/update-sales", function (req, res) {
                   // }
                   if (pRes.data[0].items[0]) {                    
 
-                    if (pRes.data[0].items[0].sellers[0].commertialOffer.DiscountHighLight.length === 1) {
-                      pRes.data[0].items.forEach(item => {
-                        if (item.sellers[0].commertialOffer.AvailableQuantity) {
-                          item.sellers[0].commertialOffer.DiscountHighLight.forEach(highlight => {
-                            if (!getKeyByValue(highlight, 'Frete') && !getKeyByValue(highlight, 'Entrega')) {
-                              isSale = true;
-                            }
-                          })
+                    pRes.data[0].items.forEach(item => {
+                      if (item.sellers[0].commertialOffer.AvailableQuantity) {
+                        if (item.sellers[0].commertialOffer.DiscountHighLight.length === 1) {
+                          const highlight = item.sellers[0].commertialOffer.DiscountHighLight[0];
+                          if (!getKeyByValue(highlight, 'Frete') && !getKeyByValue(highlight, 'Entrega')) {
+                            isSale = true;
+                          } else {
+                            console.log(highlight)
+                          }
+                        } 
+                        if (item.sellers[0].commertialOffer.DiscountHighLight.length > 1) {
+                          isSale = true;
                         }
-                      })
-                    }
+                      }
+                    })
 
-                    if (pRes.data[0].items[0].sellers[0].commertialOffer.DiscountHighLight.length > 1) {
-                        isSale = true;
-                    }
+                    // if (pRes.data[0].items[0].sellers[0].commertialOffer.DiscountHighLight.length > 1) {
+                    //     isSale = true;
+                    // }
 
                     // pRes.data[0].items[0].sellers[0].commertialOffer.DiscountHighLight.forEach(highlight => {
                     //   if (getKeyByValue(highlight, 'Oferta') || getKeyByValue(highlight, 'OFF')) {
