@@ -130,7 +130,7 @@ app.get("/update-sales", function (req, res) {
   // getProducts(0)
   getProducts(23200)
 
-  function getProducts(currentPagination, rangeTotal = 20000, currentData) {
+  function getProducts(currentPagination, rangeTotal = 25000, currentData) {
     let newData = currentData || [];
 
     const perPage = 20;
