@@ -168,12 +168,12 @@ app.get("/update-sales", function (req, res) {
 
                   // for (let index = 0; index < pRes.data[0].items.length; index++) {
                   //   if (pRes.data[0].items[index].sellers[0].commertialOffer.AvailableQuantity) {
-                  //     const price_1 = pRes.data[0].items[index].sellers[0].commertialOffer.Price;
-                  //     const price_2 = pRes.data[0].items[index].sellers[0].commertialOffer.ListPrice;
+                      // const price_1 = pRes.data[0].items[index].sellers[0].commertialOffer.Price;
+                      // const price_2 = pRes.data[0].items[index].sellers[0].commertialOffer.ListPrice;
 
-                  //     if(price_1 !== price_2) {
-                  //       isSale = true;
-                  //     }
+                      // if(price_1 !== price_2) {
+                      //   isSale = true;
+                      // }
                   //   }
                   // }
                   if (pRes.data[0].items[0]) {                    
@@ -183,9 +183,13 @@ app.get("/update-sales", function (req, res) {
                         if (item.sellers[0].commertialOffer.DiscountHighLight.length === 1) {
                           const highlight = item.sellers[0].commertialOffer.DiscountHighLight[0];
                           if (!getKeyByValue(highlight, 'Frete') && !getKeyByValue(highlight, 'Entrega')) {
-                            isSale = true;
-                            saleItem = item
-                            console.log(highlight)
+                            const price_1 = pRes.data[0].items[index].sellers[0].commertialOffer.Price;
+                            const price_2 = pRes.data[0].items[index].sellers[0].commertialOffer.ListPrice;
+                            if (price_1 !== price_2) {
+                              isSale = true;
+                              saleItem = item
+                              console.log(highlight)
+                            }
                           }
                         } 
                         if (item.sellers[0].commertialOffer.DiscountHighLight.length > 1) {
