@@ -183,8 +183,8 @@ app.get("/update-sales", function (req, res) {
                         if (item.sellers[0].commertialOffer.DiscountHighLight.length === 1) {
                           const highlight = item.sellers[0].commertialOffer.DiscountHighLight[0];
                           if (!getKeyByValue(highlight, 'Frete') && !getKeyByValue(highlight, 'Entrega')) {
-                            const price_1 = pRes.data[0].items[index].sellers[0].commertialOffer.Price;
-                            const price_2 = pRes.data[0].items[index].sellers[0].commertialOffer.ListPrice;
+                            const price_1 = item.sellers[0].commertialOffer.Price;
+                            const price_2 = item.sellers[0].commertialOffer.ListPrice;
                             if (price_1 !== price_2) {
                               isSale = true;
                               saleItem = item
