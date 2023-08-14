@@ -180,9 +180,9 @@ app.get("/update-sales", function (req, res) {
 
                     pRes.data[0].items.forEach(item => {
                       if (item.sellers[0].commertialOffer.AvailableQuantity) {
-                        if (item.sellers[0].commertialOffer.DiscountHighLight.length === 1) {
+                        // if (item.sellers[0].commertialOffer.DiscountHighLight.length === 1) {
                           const highlight = item.sellers[0].commertialOffer.DiscountHighLight[0];
-                          if (!getKeyByValue(highlight, 'Frete') && !getKeyByValue(highlight, 'Entrega')) {
+                          // if (!getKeyByValue(highlight, 'Frete') && !getKeyByValue(highlight, 'Entrega')) {
                             const price_1 = item.sellers[0].commertialOffer.Price;
                             const price_2 = item.sellers[0].commertialOffer.ListPrice;
                             if (price_1 !== price_2) {
@@ -190,12 +190,12 @@ app.get("/update-sales", function (req, res) {
                               saleItem = item
                               console.log(highlight)
                             }
-                          }
-                        } 
-                        if (item.sellers[0].commertialOffer.DiscountHighLight.length > 1) {
-                          isSale = true;
-                          saleItem = item
-                        }
+                          // }
+                        // } 
+                        // if (item.sellers[0].commertialOffer.DiscountHighLight.length > 1) {
+                        //   isSale = true;
+                        //   saleItem = item
+                        // }
                       }
                     })
 
