@@ -127,8 +127,8 @@ app.get("/update-sales", function (req, res) {
 
   console.log('loading');
 
-  // getProducts(0)
-  getProducts(22000)
+  getProducts(0)
+  // getProducts(22000)
 
   function getProducts(currentPagination, rangeTotal = 25000, currentData) {
     let newData = currentData || [];
