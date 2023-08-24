@@ -245,10 +245,8 @@ app.get("/update-sales", function (req, res) {
           })
         })
         .catch(error => {
-          const totalPages = salesResponse?.data.range.total || 20000
-
           console.log(error)
-          getProducts(currentPagination + perPage, totalPages, newData);
+          getProducts(currentPagination + perPage, 20000, newData);
         });
     }
   }
