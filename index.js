@@ -156,6 +156,7 @@ app.get("/update-sales", function (req, res) {
         .then(function (salesResponse) {
 
           let salesResponseData = salesResponse.data.data;
+          const totalPages = salesResponse?.data.range.total || 20000
           
           Object.keys(salesResponseData).forEach((productId, index) => {
             let isSale = false;
@@ -237,16 +238,17 @@ app.get("/update-sales", function (req, res) {
                 if (lastIndex) {
                   // console.log(newData)
                   // getProducts(currentPagination + perPage, 10000, newData);
-                  getProducts(currentPagination + perPage, salesResponse.data.range.total, newData);
+                  getProducts(currentPagination + perPage, totalPages, newData);
                 }
               })
 
           })
         })
         .catch(error => {
+          const totalPages = salesResponse?.data.range.total || 20000
 
           console.log(error)
-          getProducts(currentPagination + perPage, salesResponse.data.range.total, newData);
+          getProducts(currentPagination + perPage, totalPages, newData);
         });
     }
   }
