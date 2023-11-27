@@ -219,7 +219,7 @@ app.get("/update-sales", function (req, res) {
                     const { items } = item
                     // const resData = {
                     //   productId,
-                    //   productName,
+                    //   productName, 
                     //   brand,
                     //   items: [items[0]],
                     //   link,
@@ -227,7 +227,11 @@ app.get("/update-sales", function (req, res) {
                     // }
                     delete item.description;
                     delete item.items;
+                    delete item.itemMetadata;
                     item.items = [saleItem];
+                    const installments = item.items.sellers[0].Installments.slice(0,12)
+                    delete item.items[0].sellers[0].Installments;
+                    item.items[0].sellers[0].Installments = installments
                     resDataArr.push(item)
 
                   })
