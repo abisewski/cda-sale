@@ -136,7 +136,7 @@ app.get("/update-sales", function (req, res) {
     const perPage = 20;
     const currentPaginationInitial = currentPagination - perPage + 1;
 
-    if (rangeTotal <= currentPaginationInitial || newData.length >= 80) {
+    if (rangeTotal <= currentPaginationInitial || newData.length >= 70) {
       console.log('send data')
       sales.data = newData;
       sales.date = new Date().getTime();
