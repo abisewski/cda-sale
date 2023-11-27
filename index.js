@@ -229,10 +229,10 @@ app.get("/update-sales", function (req, res) {
                     delete item.items;
                     delete item.itemMetadata;
                     item.items = [saleItem];
-                    console.log("TCL: getProducts -> item.items", item.items)
-                    const installments = item.items[0].sellers[0].Installments.slice(0,12)
-                    delete item.items[0].sellers[0].Installments;
-                    item.items[0].sellers[0].Installments = installments
+                    console.log("TCL: getProducts -> item.items", item.items.sellers)
+                    const installments = item.items.sellers[0].Installments.slice(0,12)
+                    delete item.items.sellers[0].Installments;
+                    item.items.sellers[0].Installments = installments
                     resDataArr.push(item)
 
                   })
