@@ -228,8 +228,8 @@ app.get("/update-sales", function (req, res) {
                     delete item.description;
                     delete item.items;
                     delete item.itemMetadata;
+                    console.log("TCL: getProducts -> item.items", saleItem)
                     item.items = [saleItem];
-                    console.log("TCL: getProducts -> item.items", item.items[0].sellers.Installments)
                     const installments = item.items[0].sellers.Installments.slice(0,12)
                     delete item.items[0].sellers[0].Installments;
                     item.items[0].sellers[0].Installments = installments
