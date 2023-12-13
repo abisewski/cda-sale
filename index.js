@@ -162,6 +162,7 @@ app.get("/update-sales", function (req, res) {
             let isSale = false;
             let lastIndex = Object.keys(salesResponseData).length === (index + 1);
 
+            console.log("TCL: getProducts -> productId", productId)
             axios.get(`https://www.casadasaliancas.com.br/api/catalog_system/pub/products/search?fq=productId:${productId}`, { headers: headersAuth })
               .then(function (pRes) {
                 let saleItem;
@@ -247,6 +248,8 @@ app.get("/update-sales", function (req, res) {
                     getProducts(currentPagination + perPage, totalPages, newData);
                   // }, 2000)
                 }
+              }).catch(err => {
+                getProducts(currentPagination + perPage, salesResponse.data.range.total);
               })
 
           })
@@ -290,6 +293,7 @@ app.get("/update-category", function (req, res) {
         let salesResponseData = salesResponse.data.data;
         
         Object.keys(salesResponseData).forEach((productId, index) => {
+        console.log("TCL: getProducts -> productId", productId)
           let lastIndex = Object.keys(salesResponseData).length === (index + 1);
           axios.get(`https://www.casadasaliancas.com.br/api/catalog_system/pub/products/search?fq=productId:${productId}`, { headers: headersAuth })
             .then(function (pRes) {
