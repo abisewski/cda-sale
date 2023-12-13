@@ -245,7 +245,7 @@ app.get("/update-sales", function (req, res) {
                   // getProducts(currentPagination + perPage, 10000, newData);
                   setTimeout(() => {
                     getProducts(currentPagination + perPage, totalPages, newData);
-                  }, 2000)
+                  }, 5000)
                 }
               })
               // .catch(err => {
