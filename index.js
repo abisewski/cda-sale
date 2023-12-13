@@ -247,9 +247,10 @@ app.get("/update-sales", function (req, res) {
                     getProducts(currentPagination + perPage, totalPages, newData);
                   }, 2000)
                 }
-              }).catch(err => {
-                getProducts(currentPagination + perPage, salesResponse.data.range.total);
               })
+              // .catch(err => {
+              //   getProducts(currentPagination + perPage, salesResponse.data.range.total);
+              // })
 
           })
         })
