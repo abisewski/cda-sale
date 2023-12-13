@@ -243,7 +243,9 @@ app.get("/update-sales", function (req, res) {
                 if (lastIndex) {
                   // console.log(newData)
                   // getProducts(currentPagination + perPage, 10000, newData);
-                  getProducts(currentPagination + perPage, totalPages, newData);
+                  // setTimeout(() => {
+                    getProducts(currentPagination + perPage, totalPages, newData);
+                  // }, 2000)
                 }
               })
 
@@ -333,6 +335,8 @@ app.get("/update-category", function (req, res) {
                 //     })
                 // }
               }
+            }).catch(err => {
+              getProducts(currentPagination + perPage, salesResponse.data.range.total);
             })
 
         })
