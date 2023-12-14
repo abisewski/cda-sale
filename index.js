@@ -229,10 +229,10 @@ app.get("/update-sales", function (req, res) {
                     delete item.items;
                     delete item.itemMetadata;
                     item.items = [saleItem];
-                    const installments = item.items[0].sellers[0].commertialOffer.Installments.slice(0,12)
-                    delete item.items[0].sellers[0].commertialOffer.Installments;
-                    delete item.items[0].sellers[0].commertialOffer.PaymentOptions;
-                    item.items[0].sellers[0].commertialOffer.Installments = installments
+                    // const installments = item.items[0].sellers[0].commertialOffer.Installments.slice(0,12)
+                    // delete item.items[0].sellers[0].commertialOffer.Installments;
+                    // delete item.items[0].sellers[0].commertialOffer.PaymentOptions;
+                    // item.items[0].sellers[0].commertialOffer.Installments = installments
                     resDataArr.push(item)
 
                   })
