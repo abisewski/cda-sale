@@ -404,7 +404,7 @@ app.get("/update-category-from-data", function (req, res) {
   }
 });
 
-const server = app.listen(process.env.PORT || 5001, () => {
+const server = app.listen(process.env.PORT || 3000, () => {
   const port = server.address().port;
   console.log(`Express is working on port ${port}`);
 });
