@@ -233,10 +233,10 @@ app.get("/update-sales", function (req, res) {
                     delete item.items[0].sellers[0].commertialOffer.Installments;
                     delete item.items[0].sellers[0].commertialOffer.PaymentOptions;
                     item.items[0].sellers[0].commertialOffer.Installments = installments
-                    resDataArr.push(item[0])
+                    resDataArr.push(item)
 
                   })
-                  newData.push(resDataArr);
+                  newData.push(resDataArr[0]);
                   // newData.push(pRes.data);
                 } 
  
