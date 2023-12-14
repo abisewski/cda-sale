@@ -243,9 +243,7 @@ app.get("/update-sales", function (req, res) {
                 if (lastIndex) {
                   // console.log(newData)
                   // getProducts(currentPagination + perPage, 10000, newData);
-                  setTimeout(() => {
-                    getProducts(currentPagination + perPage, totalPages, newData);
-                  }, 5000)
+                  getProducts(currentPagination + perPage, totalPages, newData);
                 }
               })
               // .catch(err => {
