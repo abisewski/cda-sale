@@ -78,13 +78,12 @@ app.get("/", function (req, res) {
 app.get("/get-sales", function (req, res) {
   res.setTimeout(2000000);
   let searchedData = [];
+  console.log("TCL: req.query", req.query)
   if (Object.keys(req.query).length >= 1) {
     sales.data.forEach(function(salesItem) {
       let added = false;
       Object.keys(req.query).forEach(function(item) {
-        if (!salesItem[0][item]) return;
-
-        let matched = salesItem[0][item][0] === req.query[item] || salesItem[0][item] === req.query[item];
+        let matched = salesItem.categories.join(',').includes(req.query[item]);
 
         if (matched && !added) {
           searchedData.push(salesItem);
@@ -128,6 +127,7 @@ app.get("/update-sales", function (req, res) {
   console.log('loading');
 
   getProducts(0)
+  // getProducts(1940)
   // getProducts(22000)
 
   function getProducts(currentPagination, rangeTotal = 25000, currentData) {
