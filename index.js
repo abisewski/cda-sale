@@ -105,7 +105,7 @@ app.get('/cron', function(req, res) {
   const oldDate = sales.date;
   if (currentDate > cronDate) {
     sales.date = currentDate;
-    axios.get('https://blog.casadasaliancas.com.br/cda-update-sales.php').then(a => a).catch(err => err);
+    axios.get('https://stlflix.com.br/cda-update-sales.php').then(a => a).catch(err => err);
     res.send({
       message: 'Updating...',
       salesDate: new Date(oldDate),
@@ -135,7 +135,6 @@ app.get("/update-sales", function (req, res) {
 
     const perPage = 20;
     const currentPaginationInitial = currentPagination - perPage + 1;
-
     if (rangeTotal <= currentPaginationInitial || newData.length >= 200) {
       console.log('send data')
       sales.data = newData;
@@ -165,21 +164,21 @@ app.get("/update-sales", function (req, res) {
             axios.get(`https://www.casadasaliancas.com.br/api/catalog_system/pub/products/search?fq=productId:${productId}`, { headers: headersAuth })
               .then(function (pRes) {
                 let saleItem;
-                if (pRes.data[0]) {
+                if (data[0]) {
 
-                  // for (let index = 0; index < pRes.data[0].items.length; index++) {
-                  //   if (pRes.data[0].items[index].sellers[0].commertialOffer.AvailableQuantity) {
-                      // const price_1 = pRes.data[0].items[index].sellers[0].commertialOffer.Price;
-                      // const price_2 = pRes.data[0].items[index].sellers[0].commertialOffer.ListPrice;
+                  // for (let index = 0; index < data[0].items.length; index++) {
+                  //   if (data[0].items[index].sellers[0].commertialOffer.AvailableQuantity) {
+                      // const price_1 = data[0].items[index].sellers[0].commertialOffer.Price;
+                      // const price_2 = data[0].items[index].sellers[0].commertialOffer.ListPrice;
 
                       // if(price_1 !== price_2) {
                       //   isSale = true;
                       // }
                   //   }
                   // }
-                  if (pRes.data[0].items[0]) {                    
+                  if (data[0].items[0]) {                    
 
-                    pRes.data[0].items.forEach(item => {
+                    data[0].items.forEach(item => {
                       if (item.sellers[0].commertialOffer.AvailableQuantity) {
                         // if (item.sellers[0].commertialOffer.DiscountHighLight.length === 1) {
                           const highlight = item.sellers[0].commertialOffer.DiscountHighLight[0];
@@ -200,11 +199,11 @@ app.get("/update-sales", function (req, res) {
                       }
                     })
 
-                    // if (pRes.data[0].items[0].sellers[0].commertialOffer.DiscountHighLight.length > 1) {
+                    // if (data[0].items[0].sellers[0].commertialOffer.DiscountHighLight.length > 1) {
                     //     isSale = true;
                     // }
 
-                    // pRes.data[0].items[0].sellers[0].commertialOffer.DiscountHighLight.forEach(highlight => {
+                    // data[0].items[0].sellers[0].commertialOffer.DiscountHighLight.forEach(highlight => {
                     //   if (getKeyByValue(highlight, 'Oferta') || getKeyByValue(highlight, 'OFF')) {
                     //     isSale = true;
                     //   }
@@ -215,7 +214,7 @@ app.get("/update-sales", function (req, res) {
                 if(isSale) {
                 //   console.log('isSale', productId)
                   const resDataArr = [];
-                  pRes.data.forEach(item => {
+                  data.forEach(item => {
                     const { items } = item
                     // const resData = {
                     //   productId,
@@ -237,7 +236,7 @@ app.get("/update-sales", function (req, res) {
 
                   })
                   newData.push(resDataArr[0]);
-                  // newData.push(pRes.data);
+                  // newData.push(data);
                 } 
  
                 if (lastIndex) {
